@@ -1,0 +1,294 @@
+/* Dialog Backdrop and Container */
+.dialogBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.dialogContent {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  position: relative;
+}
+
+.dialogClose {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  transition: color 0.2s;
+}
+
+.dialogClose:hover {
+  color: #333;
+}
+
+.dialogTitle {
+  margin: 0 0 1.5rem 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+}
+
+/* Container */
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Form Styles */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.fileInputWrapper {
+  position: relative;
+  cursor: pointer;
+}
+
+.fileInput {
+  display: none;
+}
+
+.fileLabel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  border: 2px dashed #ddd;
+  border-radius: 8px;
+  background: #f9f9f9;
+  font-size: 1rem;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 500;
+}
+
+.fileLabel:hover {
+  border-color: #999;
+  background: #f0f0f0;
+  color: #333;
+}
+
+/* Buttons */
+.cameraBtn,
+.captureBtn,
+.switchBtn,
+.closeCameraBtn,
+.submitBtn,
+.resetBtn {
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.cameraBtn {
+  background: #007bff;
+  color: white;
+}
+
+.cameraBtn:hover {
+  background: #0056b3;
+}
+
+.submitBtn {
+  background: #28a745;
+  color: white;
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+}
+
+.submitBtn:hover {
+  background: #218838;
+}
+
+.resetBtn {
+  background: #6c757d;
+  color: white;
+}
+
+.resetBtn:hover {
+  background: #5a6268;
+}
+
+.captureBtn,
+.switchBtn,
+.closeCameraBtn {
+  background: white;
+  border: 2px solid #ddd;
+  color: #333;
+  padding: 0.75rem;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+}
+
+.captureBtn:hover:not(:disabled),
+.switchBtn:hover:not(:disabled),
+.closeCameraBtn:hover:not(:disabled) {
+  border-color: #333;
+  background: #f0f0f0;
+}
+
+.captureBtn:disabled,
+.switchBtn:disabled,
+.closeCameraBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Preview Container */
+.previewContainer {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f0f0f0;
+}
+
+.previewImage {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.loadingIndicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  z-index: 10;
+}
+
+/* Camera Container */
+.cameraContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.webcam {
+  width: 100%;
+  border-radius: 8px;
+  background: #000;
+}
+
+.cameraControls {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Appliance Info */
+.applianceInfo {
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 1rem;
+  border: 1px solid #e0e0e0;
+}
+
+.applianceInfo label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: #333;
+}
+
+.applianceList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.applianceItem {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.applianceItem p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+/* Error Message */
+.errorMessage {
+  background: #f8d7da;
+  border: 1px solid #f5c6cb;
+  color: #721c24;
+  padding: 0.75rem;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .dialogContent {
+    padding: 1.5rem;
+    max-height: 95vh;
+  }
+
+  .dialogTitle {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .applianceItem {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .submitBtn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .cameraControls {
+    gap: 0.5rem;
+  }
+}
