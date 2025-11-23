@@ -1,6 +1,0 @@
-{
-  "buildCommand": "cd bahaykubo && npm run build",
-  "outputDirectory": "bahaykubo/dist",
-  "devCommand": "cd bahaykubo && npm run dev",
-  "installCommand": "npm install"
-}
