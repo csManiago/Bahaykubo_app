@@ -1,0 +1,90 @@
+[
+    {
+        "class_name": "eggplant",
+        "info" : {
+            "serving": "per 100 grams - raw",
+            "calories": 25,
+            "carbs": "5.88 g",
+            "fiber": "3.0 g",
+            "protein": "0.98 g",
+            "fat": "0.18 g",
+            "potassium": "229 mg",
+            "folate": "22 µg",
+            "vitamins": {
+                "K": "3.5 µg",
+                "C": "2.2 mg"
+            },
+            "details": "Eggplant also contains small amounts of niacin, magnesium, and copper."
+        }
+    },
+    {
+        "class_name": "radish",
+        "info" : {
+            "serving": "per 100 grams - raw",
+            "calories": 16,
+            "carbs": "3.4 g",
+            "fiber": "1.6 g",
+            "protein": "0.68 g",
+            "fat": "0.1 g",
+            "potassium": "233 mg",
+            "folate": "25 µg",
+            "vitamins": {
+                "C": "14.8 mg"
+            },
+            "details": "Radish also provides small amounts of calcium, magnesium, and B-vitamins."
+        }
+    },
+    {
+        "class_name": "tomato",
+        "info" : {
+            "serving": "per 100 grams - raw",
+            "calories": 18,
+            "carbs": "3.9 g",
+            "fiber": "1.2 g",
+            "protein": "0.9 g",
+            "fat": "0.2 g",
+            "potassium": "237 mg",
+            "folate": "15 µg",
+            "vitamins": {
+                "K": "7.9 µg",
+                "C": "13.7 mg"
+            },
+            "details": "Tomatoes also contain lycopene, an antioxidant associated with health benefits."
+        }
+    },
+    {
+        "class_name": "onion",
+        "info" : {
+            "serving": "per 100 grams - raw",
+            "calories": 40,
+            "carbs": "9.34 g",
+            "fiber": "1.7 g",
+            "protein": "1.1 g",
+            "fat": "0.1 g",
+            "potassium": "146 mg",
+            "folate": "19 µg",
+            "vitamins": {
+                "K": "0.4 µg",
+                "C": "7.4 mg"
+            },
+            "details": "Onions also provide small amounts of manganese, vitamin B6, and antioxidants like quercetin."
+        }
+    },
+    {
+        "class_name": "garlic",
+        "info" : {
+            "serving": "per 100 grams - raw",
+            "calories": 149,
+            "carbs": "33.1 g",
+            "fiber": "2.1 g",
+            "protein": "6.36 g",
+            "fat": "0.5 g",
+            "potassium": "401 mg",
+            "folate": "3 µg",
+            "vitamins": {
+                "C": "31.2 mg"
+            },
+            "details": "Garlic also contains 1.16g of Zinc and is rich in manganese, selenium, and sulfur-based compounds."
+        }
+    }
+]

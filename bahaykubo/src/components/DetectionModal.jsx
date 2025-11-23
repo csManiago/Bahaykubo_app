@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import Webcam from "react-webcam";
-import { Camera, RefreshCw, X, Aperture } from "lucide-react";
-import detectionStyles from "./Detection.module.css"; 
+import { Camera, RefreshCw, X, Aperture, ChevronDown } from "lucide-react";
+import detectionStyles from "./Detection.module.css";
+import nutritionData from "../../nutrition.json"; 
 
 function DetectionModal({ onClose, onDetect }) {
   const webcamRef = useRef(null);
@@ -15,6 +16,7 @@ function DetectionModal({ onClose, onDetect }) {
   const [useCamera, setUseCamera] = useState(false);
   const [facingMode, setFacingMode] = useState("environment");
   const [isMobile, setIsMobile] = useState(false);
+  const [expandedNutrition, setExpandedNutrition] = useState(null);
 
   useEffect(() => {
     const checkIsMobile = () => {
@@ -145,6 +147,12 @@ function DetectionModal({ onClose, onDetect }) {
     setFacingMode(facingMode === "user" ? "environment" : "user");
   };
 
+  const getNutritionInfo = (className) => {
+    return nutritionData.find(
+      (item) => item.class_name.toLowerCase() === className.toLowerCase()
+    );
+  };
+
 
   return (
     // 1. The Outer Backdrop
@@ -219,28 +227,113 @@ function DetectionModal({ onClose, onDetect }) {
                 </div>
               )}
               {result && result.detections && result.detections.length > 0 && (
-                <div className={detectionStyles.applianceInfo}>
+                <div className={detectionStyles.vegetableInfo}>
                   <label>
                     Detected Vegetables ({result.detections.length}):
                   </label>
-                  <div className={detectionStyles.applianceList}>
-                    {result.detections.map((detection, index) => (
-                      <div
-                        key={index}
-                        className={detectionStyles.applianceItem}
-                      >
-                        <p>
-                          <strong>{detection.class_name}</strong>
-                        </p>
-                      </div>
-                    ))}
+                  <div className={detectionStyles.vegetableList}>
+                    {result.detections.map((detection, index) => {
+                      const nutrition = getNutritionInfo(detection.class_name);
+                      const isExpanded = expandedNutrition === index;
+                      return (
+                        <div key={index}>
+                          <div className={detectionStyles.vegetableItem}>
+                            <p>
+                              <strong>{detection.class_name}</strong>
+                            </p>
+                            {nutrition && (
+                              <button
+                                onClick={() =>
+                                  setExpandedNutrition(isExpanded ? null : index)
+                                }
+                                className={detectionStyles.nutritionToggleBtn}
+                                title="View nutrition facts"
+                              >
+                                <ChevronDown
+                                  size={18}
+                                  style={{
+                                    transform: isExpanded
+                                      ? "rotate(180deg)"
+                                      : "rotate(0deg)",
+                                    transition: "transform 0.2s",
+                                  }}
+                                />
+                              </button>
+                            )}
+                          </div>
+                          {isExpanded && nutrition && (
+                            <div className={detectionStyles.nutritionDropdown}>
+                              <div className={detectionStyles.nutritionContent}>
+                                <h4>{nutrition.class_name} - Nutrition Facts</h4>
+                                <p className={detectionStyles.servingSize}>
+                                  {nutrition.info.serving}
+                                </p>
+                                <div className={detectionStyles.nutritionGrid}>
+                                  <div className={detectionStyles.nutritionRow}>
+                                    <span>Calories:</span>
+                                    <span>{nutrition.info.calories}</span>
+                                  </div>
+                                  <div className={detectionStyles.nutritionRow}>
+                                    <span>Carbs:</span>
+                                    <span>{nutrition.info.carbs}</span>
+                                  </div>
+                                  <div className={detectionStyles.nutritionRow}>
+                                    <span>Fiber:</span>
+                                    <span>{nutrition.info.fiber}</span>
+                                  </div>
+                                  <div className={detectionStyles.nutritionRow}>
+                                    <span>Protein:</span>
+                                    <span>{nutrition.info.protein}</span>
+                                  </div>
+                                  <div className={detectionStyles.nutritionRow}>
+                                    <span>Fat:</span>
+                                    <span>{nutrition.info.fat}</span>
+                                  </div>
+                                  <div className={detectionStyles.nutritionRow}>
+                                    <span>Potassium:</span>
+                                    <span>{nutrition.info.potassium}</span>
+                                  </div>
+                                  <div className={detectionStyles.nutritionRow}>
+                                    <span>Folate:</span>
+                                    <span>{nutrition.info.folate}</span>
+                                  </div>
+                                </div>
+                                {Object.keys(nutrition.info.vitamins).length > 0 && (
+                                  <div className={detectionStyles.vitaminSection}>
+                                    <h5>Vitamins</h5>
+                                    {Object.entries(
+                                      nutrition.info.vitamins
+                                    ).map(([name, value]) => (
+                                      <div
+                                        key={name}
+                                        className={
+                                          detectionStyles.nutritionRow
+                                        }
+                                      >
+                                        <span>Vitamin {name}:</span>
+                                        <span>{value}</span>
+                                      </div>
+                                    ))}
+                                  </div>
+                                )}
+                                {nutrition.info.details && (
+                                  <p className={detectionStyles.nutritionDetails}>
+                                    {nutrition.info.details}
+                                  </p>
+                                )}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               )}
               {result &&
                 (!result.detections || result.detections.length === 0) && (
                   <div
-                    className={detectionStyles.applianceInfo}
+                    className={detectionStyles.vegetableInfo}
                     style={{
                       color: "#666",
                       padding: "1rem",
@@ -258,6 +351,7 @@ function DetectionModal({ onClose, onDetect }) {
                     setFile(null);
                     setPreview(null);
                     setError(null);
+                    setExpandedNutrition(null);
                   }}
                   className={detectionStyles.resetBtn}
                 >
@@ -333,28 +427,113 @@ function DetectionModal({ onClose, onDetect }) {
                 </div>
               )}
               {result && result.detections && result.detections.length > 0 && (
-                <div className={detectionStyles.applianceInfo}>
+                <div className={detectionStyles.vegetableInfo}>
                   <label>
                     Detected Vegetables ({result.detections.length}):
                   </label>
-                  <div className={detectionStyles.applianceList}>
-                    {result.detections.map((detection, index) => (
-                      <div
-                        key={index}
-                        className={detectionStyles.applianceItem}
-                      >
-                        <p>
-                          <strong>{detection.class_name}</strong>
-                        </p>
-                      </div>
-                    ))}
+                  <div className={detectionStyles.vegetableList}>
+                    {result.detections.map((detection, index) => {
+                      const nutrition = getNutritionInfo(detection.class_name);
+                      const isExpanded = expandedNutrition === index;
+                      return (
+                        <div key={index}>
+                          <div className={detectionStyles.vegetableItem}>
+                            <p>
+                              <strong>{detection.class_name}</strong>
+                            </p>
+                            {nutrition && (
+                              <button
+                                onClick={() =>
+                                  setExpandedNutrition(isExpanded ? null : index)
+                                }
+                                className={detectionStyles.nutritionToggleBtn}
+                                title="View nutrition facts"
+                              >
+                                <ChevronDown
+                                  size={18}
+                                  style={{
+                                    transform: isExpanded
+                                      ? "rotate(180deg)"
+                                      : "rotate(0deg)",
+                                    transition: "transform 0.2s",
+                                  }}
+                                />
+                              </button>
+                            )}
+                          </div>
+                          {isExpanded && nutrition && (
+                            <div className={detectionStyles.nutritionDropdown}>
+                              <div className={detectionStyles.nutritionContent}>
+                                <h4>{nutrition.class_name} - Nutrition Facts</h4>
+                                <p className={detectionStyles.servingSize}>
+                                  {nutrition.info.serving}
+                                </p>
+                                <div className={detectionStyles.nutritionGrid}>
+                                  <div className={detectionStyles.nutritionRow}>
+                                    <span>Calories:</span>
+                                    <span>{nutrition.info.calories}</span>
+                                  </div>
+                                  <div className={detectionStyles.nutritionRow}>
+                                    <span>Carbs:</span>
+                                    <span>{nutrition.info.carbs}</span>
+                                  </div>
+                                  <div className={detectionStyles.nutritionRow}>
+                                    <span>Fiber:</span>
+                                    <span>{nutrition.info.fiber}</span>
+                                  </div>
+                                  <div className={detectionStyles.nutritionRow}>
+                                    <span>Protein:</span>
+                                    <span>{nutrition.info.protein}</span>
+                                  </div>
+                                  <div className={detectionStyles.nutritionRow}>
+                                    <span>Fat:</span>
+                                    <span>{nutrition.info.fat}</span>
+                                  </div>
+                                  <div className={detectionStyles.nutritionRow}>
+                                    <span>Potassium:</span>
+                                    <span>{nutrition.info.potassium}</span>
+                                  </div>
+                                  <div className={detectionStyles.nutritionRow}>
+                                    <span>Folate:</span>
+                                    <span>{nutrition.info.folate}</span>
+                                  </div>
+                                </div>
+                                {Object.keys(nutrition.info.vitamins).length > 0 && (
+                                  <div className={detectionStyles.vitaminSection}>
+                                    <h5>Vitamins</h5>
+                                    {Object.entries(
+                                      nutrition.info.vitamins
+                                    ).map(([name, value]) => (
+                                      <div
+                                        key={name}
+                                        className={
+                                          detectionStyles.nutritionRow
+                                        }
+                                      >
+                                        <span>Vitamin {name}:</span>
+                                        <span>{value}</span>
+                                      </div>
+                                    ))}
+                                  </div>
+                                )}
+                                {nutrition.info.details && (
+                                  <p className={detectionStyles.nutritionDetails}>
+                                    {nutrition.info.details}
+                                  </p>
+                                )}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               )}
               {result &&
                 (!result.detections || result.detections.length === 0) && (
                   <div
-                    className={detectionStyles.applianceInfo}
+                    className={detectionStyles.vegetableInfo}
                     style={{
                       color: "#666",
                       padding: "1rem",

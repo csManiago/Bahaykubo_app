@@ -218,28 +218,28 @@
   flex-wrap: wrap;
 }
 
-/* Appliance Info */
-.applianceInfo {
+/* Vegetable Info */
+.vegetableInfo {
   background: #f9f9f9;
   border-radius: 8px;
   padding: 1rem;
   border: 1px solid #e0e0e0;
 }
 
-.applianceInfo label {
+.vegetableInfo label {
   display: block;
   font-weight: 600;
   margin-bottom: 0.75rem;
   color: #333;
 }
 
-.applianceList {
+.vegetableList {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
 }
 
-.applianceItem {
+.vegetableItem {
   background: white;
   border: 1px solid #ddd;
   border-radius: 6px;
@@ -249,10 +249,116 @@
   align-items: center;
 }
 
-.applianceItem p {
+.vegetableItem p {
   margin: 0;
   font-size: 0.95rem;
   color: #333;
+}
+
+/* Nutrition Toggle and Dropdown */
+.nutritionToggleBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #007bff;
+  transition: color 0.2s;
+}
+
+.nutritionToggleBtn:hover {
+  color: #0056b3;
+}
+
+.nutritionDropdown {
+  background: #f0f8ff;
+  border: 1px solid #b3d9ff;
+  border-radius: 6px;
+  margin-top: 0.5rem;
+  overflow: hidden;
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.nutritionContent {
+  padding: 1rem;
+}
+
+.nutritionContent h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+  color: #333;
+  text-transform: capitalize;
+}
+
+.servingSize {
+  margin: 0 0 0.75rem 0;
+  font-size: 0.85rem;
+  color: #666;
+  font-style: italic;
+}
+
+.nutritionGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.nutritionRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+  background: white;
+  border-radius: 4px;
+  border: 1px solid #e0e0e0;
+  font-size: 0.9rem;
+}
+
+.nutritionRow span:first-child {
+  font-weight: 500;
+  color: #555;
+}
+
+.nutritionRow span:last-child {
+  color: #007bff;
+  font-weight: 600;
+}
+
+.vitaminSection {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #ddd;
+}
+
+.vitaminSection h5 {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.nutritionDetails {
+  margin: 0.75rem 0 0 0;
+  font-size: 0.85rem;
+  color: #666;
+  font-style: italic;
+  padding: 0.5rem;
+  background: white;
+  border-radius: 4px;
+  border-left: 3px solid #007bff;
+  padding-left: 0.75rem;
 }
 
 /* Error Message */
@@ -278,7 +384,7 @@
     margin-bottom: 1rem;
   }
 
-  .applianceItem {
+  .vegetableItem {
     flex-direction: column;
     align-items: flex-start;
   }
