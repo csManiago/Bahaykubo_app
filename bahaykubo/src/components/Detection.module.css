@@ -198,6 +198,12 @@
   z-index: 10;
 }
 
+.noVegetablesMessage {
+  color: #666;
+  padding: 1rem;
+  text-align: center;
+}
+
 /* Camera Container */
 .cameraContainer {
   display: flex;
