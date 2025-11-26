@@ -391,7 +391,6 @@
   }
 
   .vegetableItem {
-    flex-direction: column;
     align-items: flex-start;
   }
 
@@ -402,5 +401,31 @@
 
   .cameraControls {
     gap: 0.5rem;
+  }
+
+  .captureBtn,
+  .switchBtn,
+  .closeCameraBtn {
+    width: 48px;
+    height: 48px;
+    padding: 0.5rem;
+  }
+
+  .captureBtn svg,
+  .switchBtn svg,
+  .closeCameraBtn svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .cameraBtn,
+  .resetBtn {
+    font-size: 0.9rem;
+    padding: 0.6rem 0.8rem;
+  }
+
+  .fileLabel {
+    font-size: 0.9rem;
+    padding: 0.8rem;
   }
 }
